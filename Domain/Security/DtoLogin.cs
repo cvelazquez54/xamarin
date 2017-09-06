@@ -14,6 +14,6 @@ namespace Domain.Security
         {
             get; 
             set;
-        }
+        } 
     }
 }
