@@ -12,7 +12,7 @@ namespace Domain.Security
         public string Username { get; set; }
         public string Password
         {
-            get;
+            get; 
             set;
         }
     }
