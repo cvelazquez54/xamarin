@@ -17,6 +17,6 @@
 		android:label="TeacherHiring">
 		<meta-data
 			android:name="com.google.android.maps.v2.API_KEY"
-			android:value="AlzaSyCY7z15lrvO-oTcGCRIGg2B3dkEls-vaU" />
+			android:value="AIzaSyANUIOb6_lGxzjb2o-sadaHvqWM9jMIbbw" />
 	</application>
 </manifest>

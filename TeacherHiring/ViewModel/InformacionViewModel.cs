@@ -69,10 +69,8 @@ namespace TeacherHiring
 			}
 			catch (Exception ex)
 			{
-				System.Diagnostics.Debug.WriteLine(ex.Message);
-				string error = ex.Message;
-				UserDialogs.Instance.ShowError(ex.Message);
-			}
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Error", "OK");
+            }
 			finally
 			{
 				IsBusy = false;
@@ -94,10 +92,8 @@ namespace TeacherHiring
 			}
 			catch (Exception ex)
 			{
-				System.Diagnostics.Debug.WriteLine(ex.Message);
-				string error = ex.Message;
-				UserDialogs.Instance.ShowError(ex.Message);
-			}
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Error", "OK");
+            }
 			finally
 			{
 				IsBusy = false;
@@ -115,10 +111,8 @@ namespace TeacherHiring
 			}
 			catch (Exception ex)
 			{
-				System.Diagnostics.Debug.WriteLine(ex.Message);
-				string error = ex.Message;
-				UserDialogs.Instance.ShowError(ex.Message);
-			}
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Error", "OK");
+            }
 			finally
 			{
 				IsBusy = false;

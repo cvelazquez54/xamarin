@@ -1,8 +1,7 @@
-﻿using Acr.UserDialogs;
+﻿using Domain.Student;
 using Domain.Teacher;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,38 +12,35 @@ using Xamarin.Forms.Xaml;
 namespace TeacherHiring.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ClassListPage : ContentPage
+    public partial class RequestStatusPage : ContentPage
     {
-        
-
-        public ClassesPageViewModel viewModel;
-        public ClassListPage()
+        public RequestStatusViewModel viewModel;
+        public RequestStatusPage()
         {
+            Title = "Solicitudes realizadas";
             InitializeComponent();
-            BindingContext = viewModel = new ClassesPageViewModel();
-            
+            BindingContext = viewModel = new RequestStatusViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as DtoClassAvailable;
+            var item = args.SelectedItem as DtoRequestStatus;
             if (item == null)
                 return;
+            item.StudentID = App.LoggedUser.UserID;
 
-            var teacher = App.LoggedUser;
-
-            var bookClass = new DtoNewClass
+            await viewModel.MasterNavigateTo(new ClassDetailPage(new DtoTeacherSchedule
             {
                 ClassID = item.ClassID,
-                Name = item.Name,
-                TeacherID = teacher.UserID,
-                TeacherName = teacher.Name,
-                AvailableDate = DateTime.Now,
-                Time = DateTime.Now.TimeOfDay,
-                Token = teacher.Token
-            };
-
-            await viewModel.MasterNavigateTo(new RegisterClassPage(new RegisterClassPageViewModel(bookClass)));
+                ClassName = item.ClassName,
+                AvailableDate = item.AvailableDate,
+                Latitude = item.Latitude,
+                Longitude = item.Longitude,
+                TeacherID = item.TeacherID,
+                TeacherName = item.TeacherName,
+                StudentID = item.StudentID,
+                Token = App.LoggedUser.Token
+            }));
 
             // Manually deselect item
             ListItems.SelectedItem = null;

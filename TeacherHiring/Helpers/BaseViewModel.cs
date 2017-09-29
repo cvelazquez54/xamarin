@@ -54,14 +54,27 @@ namespace TeacherHiring
 			await MasterDetail.Detail.Navigation.PushAsync(pageView);
 		}
 
+        public async Task MasterNavigateToMain(Page page)
+        {
+            MasterDetail.IsPresented = false;
+            NavigationPage.SetHasNavigationBar(page, false);
+
+            await MasterDetail.Detail.Navigation.PushAsync(page);
+        }
+
+
+        /// <summary>
+        /// Ask
+        /// </summary>
+        /// <param name="pageView"></param>
 		public void NavigateToPageCurrent(Page pageView)
 		{
 			Application.Current.MainPage = pageView;
 		}
 
-		public void NavigateGoBack()
+		public async Task NavigateGoBack()
 		{
-			Navigation.PopAsync();
+			await Navigation.PopAsync();
 		}
 
         public async void SaveUserInformation(DtoUser user)
@@ -69,19 +82,6 @@ namespace TeacherHiring
             App.Current.Properties["User"] = JsonConvert.SerializeObject(user).ToString();
             await App.Current.SavePropertiesAsync();
         }
-
-        //private async Task verifyLoggedUserAsync()
-        //{
-        //    if (App.LoggedUser == null)
-        //    {
-        //      await  NavigateTo(new Login());
-        //    }
-        //    else if (App.LoggedUser.TokenExpirationDate.Date < DateTime.Now.Date)
-        //    {
-        //        UserDialogs.Instance.ShowError("La sesión ha expirado!");
-        //    }
-            
-        //}
 
     }
 }

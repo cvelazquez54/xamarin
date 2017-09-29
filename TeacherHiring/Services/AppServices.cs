@@ -42,5 +42,19 @@ namespace TeacherHiring.Services
                 return _teacherServices;
             }
         }
+
+        private StudentServices _studentService;
+        public StudentServices StudentServices
+        {
+            get
+            {
+                if (_studentService == null)
+                {
+                    _studentService = new StudentServices(_urlAPI);
+                }
+
+                return _studentService;
+            }
+        }
     }
 }

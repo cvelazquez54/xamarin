@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using TeacherHiring.Services;
 using System.Net.Http.Headers;
 using System.Linq;
 using Domain.Security;
 
 namespace TeacherHiring
 {
-	public class SecurityServices: BaseApiService
+    public class SecurityServices
 	{
 
         private string _apiUrl;
+        private HttpClient _client;
 
 		public SecurityServices(string apiUrl)
 		{
             _apiUrl = apiUrl;
-		}
+            _client = new HttpClient();
+            _client.MaxResponseContentBufferSize = long.MaxValue;
+
+        }
 		public async Task<DtoUser> SignIn(DtoLogin person)
 		{
             try
@@ -36,7 +38,7 @@ namespace TeacherHiring
                 var uri = new Uri(string.Format(_apiUrl + "Authenticate/Authenticate", "LogPerson"));
                 var json = JsonConvert.SerializeObject(new { ClaveAcceso = person.Username, Contrasena = person.Password });
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await ApiClient.PostAsync(uri, content);
+                var response = await _client.PostAsync(uri, content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -62,9 +64,13 @@ namespace TeacherHiring
 
             var uri = new Uri(string.Format(_apiUrl + "Usuario/GetDataPerson?token={0}", token));
             
-            ApiClient.DefaultRequestHeaders.Accept.Clear();
-            ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await ApiClient.GetAsync(uri);
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
+            request.Headers.Add("Token", token);
+
+            HttpResponseMessage response = await _client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
             {
@@ -75,7 +81,7 @@ namespace TeacherHiring
                      UserID = person.Id,
                      Name = person.Nombre,
                      UserName = person.ClaveAcceso,
-                     Token = person.ClientID,
+                     Token = token,
                      UserTypeID = person.IdTipoPerson
                 };
             }
@@ -84,31 +90,6 @@ namespace TeacherHiring
 
         }
 
-        //public async Task<DtoUser> GetPerson(string token)
-        //{
-        //    if (string.IsNullOrEmpty(token))
-        //        throw new Exception("Invalid token value.");
-
-        //    var uri = new Uri(string.Format(_apiUrl + "Usuario/GetDataPerson?token={0}", token));
-
-        //    ApiClient.DefaultRequestHeaders.Accept.Clear();
-        //    ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //    HttpResponseMessage response = await ApiClient.GetAsync(uri);
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var result = await response.Content.ReadAsStringAsync();
-        //        //return JsonConvert.DeserializeObject<Person>(result);
-
-        //        var o = JsonConvert.DeserializeObject<dynamic>(result);
-
-        //        return new DtoUser {
-                     
-        //        };
-        //    }
-
-        //    return null;
-        //}
-
+     
     }
 }

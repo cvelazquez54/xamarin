@@ -1,22 +1,25 @@
 ﻿using Acr.UserDialogs;
-using Domain.Teacher;
+using Domain.Student;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace TeacherHiring.ViewModel
 {
-    public class ClassesPageViewModel : BaseViewModel
+    public class PendingRequestsViewModel :BaseViewModel
     {
-        private ObservableCollection<DtoClassAvailable> _items;
-        public ObservableCollection<DtoClassAvailable> Items {
+        private ObservableCollection<DtoRequestStatus> _items;
+
+        public ObservableCollection<DtoRequestStatus> Items
+        {
             get
             {
-                return _items;  
+                return _items;
             }
             set
             {
@@ -25,18 +28,16 @@ namespace TeacherHiring.ViewModel
             }
         }
 
-        public Command LoadItemsCommand { get; set; }
-        
+        public ICommand LoadItemsCommand { get; set; }
 
-        public ClassesPageViewModel()
-        { 
-            Items = new ObservableCollection<DtoClassAvailable>();
+        public PendingRequestsViewModel()
+        {
+            Items = new ObservableCollection<DtoRequestStatus>();
             LoadItemsCommand = new Command(async () => await GetItemsDataSource());
         }
 
         async Task GetItemsDataSource()
         {
-
             if (IsBusy)
                 return;
 
@@ -44,10 +45,10 @@ namespace TeacherHiring.ViewModel
 
             try
             {
-                using (UserDialogs.Instance.Loading("Obteniendo materias disponibles..."))
+                using (UserDialogs.Instance.Loading("Obteniendo solicitudes pendientes..."))
                 {
                     Items.Clear();
-                    Items = new ObservableCollection<DtoClassAvailable>(await ApiServices.TeacherServices.GetAvailableClasses(App.LoggedUser.Token));
+                    Items = new ObservableCollection<DtoRequestStatus>(await ApiServices.TeacherServices.GetPendingRequests(App.LoggedUser.UserID));
                 }
             }
             catch (Exception ex)
@@ -58,8 +59,6 @@ namespace TeacherHiring.ViewModel
             {
                 IsBusy = false;
             }
-
         }
-
     }
 }

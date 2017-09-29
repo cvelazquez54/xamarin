@@ -1,8 +1,6 @@
-﻿using Acr.UserDialogs;
-using Domain.Teacher;
+﻿using Domain.Teacher;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,16 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace TeacherHiring.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ClassListPage : ContentPage
+    public partial class RequestsPage : ContentPage
     {
-        
-
-        public ClassesPageViewModel viewModel;
-        public ClassListPage()
+        public RequestsViewModel viewModel;
+        public RequestsPage()
         {
+            Title = "Materias disponibles";
             InitializeComponent();
-            BindingContext = viewModel = new ClassesPageViewModel();
-            
+            BindingContext = viewModel = new RequestsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -44,7 +40,7 @@ namespace TeacherHiring.Views
                 Token = teacher.Token
             };
 
-            await viewModel.MasterNavigateTo(new RegisterClassPage(new RegisterClassPageViewModel(bookClass)));
+            await viewModel.MasterNavigateTo(new TeacherSchedulePage(bookClass));
 
             // Manually deselect item
             ListItems.SelectedItem = null;

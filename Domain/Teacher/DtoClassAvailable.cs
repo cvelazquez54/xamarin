@@ -9,6 +9,15 @@ namespace Domain.Teacher
     public class DtoClassAvailable
     {
         public int ClassID { get; set; }
-        public string ClassName { get; set; }
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+
+        public string AvailableDescription
+        {
+            get
+            {
+                return "Asesorías disponibles: " + Quantity.ToString();
+            }
+        }
     }
 }

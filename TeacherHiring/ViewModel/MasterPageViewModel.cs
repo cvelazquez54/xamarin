@@ -25,13 +25,6 @@ namespace TeacherHiring
 
         private ObservableCollection<MasterPageMenuItem> getMenuItems()
         {
-            //         new ObservableCollection<MasterPageMenuItem>(new[]
-            //         {
-            //             new MasterPageMenuItem{Id=0,Title="Inicio",TargetType=typeof(WelcomePage),IconPath="home_black.png"},
-            //	//new MasterPageMenuItem{Id=4,Title="Informacion",TargetType=typeof(InformacionPage),IconPath="ic_view_dashboard.png"},
-            //	//new MasterPageMenuItem{Id=1,Title="Asesorias Programadas",TargetType=typeof(AsesoriasPage),IconPath="ic_view_dashboard.png"},
-            //	//new MasterPageMenuItem{Id=2,Title="Solicitar Asesorias",TargetType=typeof(SolicitudPage),IconPath="ic_view_dashboard.png"}
-            //});
 
             switch (App.LoggedUser.UserTypeID)
             {
@@ -39,14 +32,14 @@ namespace TeacherHiring
                     return new ObservableCollection<MasterPageMenuItem>(new[] {
                         new MasterPageMenuItem{Id = 1, Title = "Inicio", TargetType=typeof(WelcomePage), IconPath = "home_black.png" },
                         new MasterPageMenuItem{Id = 2, Title = "Registrar asesoría", TargetType=typeof(ClassListPage), IconPath = "add_black.png" },
-                        new MasterPageMenuItem{Id = 3, Title = "Confirmar asesoría", TargetType=typeof(WelcomePage), IconPath = "check_black.png" },
-                        new MasterPageMenuItem{Id = 4, Title = "Próximas asesorías", TargetType=typeof(WelcomePage), IconPath = "books_black.png" },
+                        new MasterPageMenuItem{Id = 3, Title = "Confirmar asesoría", TargetType=typeof(PendingRequestsPage), IconPath = "check_black.png" },
+                        new MasterPageMenuItem{Id = 4, Title = "Próximas asesorías", TargetType=typeof(ConfirmedRequestsPage), IconPath = "books_black.png" },
                     });
                 case 2:
                     return new ObservableCollection<MasterPageMenuItem>(new[] {
                         new MasterPageMenuItem{Id = 1, Title = "Inicio", TargetType=typeof(WelcomePage), IconPath = "home_black.png" },
-                        new MasterPageMenuItem{Id = 2, Title = "Solicitar asesoría", TargetType=typeof(WelcomePage), IconPath = "folder_black.png" },
-                        new MasterPageMenuItem{Id = 3, Title = "Solicitudes realizadas", TargetType=typeof(WelcomePage), IconPath = "books_black.png" },
+                        new MasterPageMenuItem{Id = 2, Title = "Solicitar asesoría", TargetType=typeof(RequestsPage), IconPath = "folder_black.png" },
+                        new MasterPageMenuItem{Id = 3, Title = "Solicitudes realizadas", TargetType=typeof(RequestStatusPage), IconPath = "books_black.png" },
                     });
                 default:
                     return new ObservableCollection<MasterPageMenuItem>();

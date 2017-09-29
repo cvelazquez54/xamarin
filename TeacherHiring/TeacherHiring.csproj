@@ -53,12 +53,35 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppServices.cs" />
-    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\StudentServices.cs" />
     <Compile Include="Services\TeacherServices.cs" />
+    <Compile Include="ViewModel\RegisterClassPageViewModel.cs" />
     <Compile Include="ViewModel\ClassesPageViewModel.cs" />
+    <Compile Include="ViewModel\ConfirmedRequestsViewModel.cs" />
+    <Compile Include="ViewModel\ConfirmRequestViewModel.cs" />
+    <Compile Include="ViewModel\PendingRequestsViewModel.cs" />
+    <Compile Include="ViewModel\RequestStatusViewModel.cs" />
+    <Compile Include="ViewModel\ScheduleRequestViewModel.cs" />
+    <Compile Include="ViewModel\TeacherScheduleViewModel.cs" />
+    <Compile Include="ViewModel\RequestsViewModel.cs" />
     <Compile Include="ViewModel\WelcomeViewModel.cs" />
+    <Compile Include="Views\ClassDetailPage.xaml.cs">
+      <DependentUpon>ClassDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterClassPage.xaml.cs">
+      <DependentUpon>RegisterClassPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClassListPage.xaml.cs">
       <DependentUpon>ClassListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmedRequestsPage.xaml.cs">
+      <DependentUpon>ConfirmedRequestsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmRequestPage.xaml.cs">
+      <DependentUpon>ConfirmRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CounselingDetailPage.xaml.cs">
+      <DependentUpon>CounselingDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -71,6 +94,21 @@
     </Compile>
     <Compile Include="Model\MasterPageMenuItem.cs" />
     <Compile Include="ViewModel\MasterPageViewModel.cs" />
+    <Compile Include="Views\PendingRequestsPage.xaml.cs">
+      <DependentUpon>PendingRequestsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RequestStatusPage.xaml.cs">
+      <DependentUpon>RequestStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleRequestPage.xaml.cs">
+      <DependentUpon>ScheduleRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherSchedulePage.xaml.cs">
+      <DependentUpon>TeacherSchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RequestsPage.xaml.cs">
+      <DependentUpon>RequestsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
@@ -112,6 +150,66 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ClassListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RegisterClassPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RequestsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TeacherSchedulePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ScheduleRequestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RequestStatusPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PendingRequestsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConfirmRequestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConfirmedRequestsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CounselingDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ClassDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

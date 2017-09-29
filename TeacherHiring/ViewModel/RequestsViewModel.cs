@@ -1,42 +1,40 @@
 ﻿using Acr.UserDialogs;
 using Domain.Teacher;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace TeacherHiring.ViewModel
 {
-    public class ClassesPageViewModel : BaseViewModel
+    public class RequestsViewModel:BaseViewModel
     {
         private ObservableCollection<DtoClassAvailable> _items;
-        public ObservableCollection<DtoClassAvailable> Items {
+
+        public ObservableCollection<DtoClassAvailable> Items
+        {
             get
             {
-                return _items;  
+                return _items;
             }
             set
             {
-                _items = value;
+                _items = value; 
                 RaisePropertyChanged();
             }
         }
 
-        public Command LoadItemsCommand { get; set; }
-        
+        public ICommand LoadItemsCommand { get; set; }
 
-        public ClassesPageViewModel()
-        { 
+        public RequestsViewModel()
+        {
             Items = new ObservableCollection<DtoClassAvailable>();
             LoadItemsCommand = new Command(async () => await GetItemsDataSource());
         }
 
         async Task GetItemsDataSource()
         {
-
             if (IsBusy)
                 return;
 
@@ -58,7 +56,6 @@ namespace TeacherHiring.ViewModel
             {
                 IsBusy = false;
             }
-
         }
 
     }

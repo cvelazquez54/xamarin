@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Acr.UserDialogs": "4.2.1",
+    "Json.NET.Web": "1.0.49",
     "Newtonsoft.Json": "10.0.3",
     "sqlite-net-pcl": "1.4.118",
     "Xam.Plugin.Geolocator": "3.0.4",

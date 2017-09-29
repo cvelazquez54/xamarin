@@ -69,8 +69,8 @@ namespace TeacherHiring
 			}
 			catch (Exception ex)
 			{
-				UserDialogs.Instance.ShowError(ex.Message);
-			}
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Error", "OK");
+            }
 			finally
 			{
 				IsBusy = false;

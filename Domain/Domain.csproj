@@ -40,7 +40,10 @@
     <Compile Include="Security\DtoLogin.cs" />
     <Compile Include="Security\DtoUser.cs" />
     <Compile Include="Security\DtoWelcomePage.cs" />
+    <Compile Include="Student\DtoRequestStatus.cs" />
     <Compile Include="Teacher\DtoClassAvailable.cs" />
+    <Compile Include="Teacher\DtoNewClass.cs" />
+    <Compile Include="Teacher\DtoTeacherSchedue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
